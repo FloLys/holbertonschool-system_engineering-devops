@@ -1,2 +1,2 @@
 #!/bin/bash
-file -C -m school.mgc 0x[SCHOOL]
+echo "0 search mgc data" > school.mgc
