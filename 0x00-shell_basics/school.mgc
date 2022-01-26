@@ -1,2 +1,2 @@
 #!/bin/bash
-file --offset 0x[School]*
+echo "SCHOOL">> school.mgc
