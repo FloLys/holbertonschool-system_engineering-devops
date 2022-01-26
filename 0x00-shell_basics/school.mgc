@@ -1,2 +1,2 @@
 #!/bin/bash
-file [School]*
+file --offset 0x[School]*
