@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "SCHOOL">> school.mgc
+file -C -m school.mgc 0x[SCHOOL]
