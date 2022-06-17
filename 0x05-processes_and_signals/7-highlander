@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Displays to infinity and beyond indefinetely
+trap "echo "I am invincible!!!"" SIGTERM
 while ((1))
 do
   echo "To infinity and beyond"
   sleep 2
-  trap "echo "I am invincible!!!"; exit" SIGTERM
 done
