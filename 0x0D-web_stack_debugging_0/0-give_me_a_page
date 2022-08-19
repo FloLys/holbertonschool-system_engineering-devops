@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# starts apache in our server
+sudo service apache2 start
