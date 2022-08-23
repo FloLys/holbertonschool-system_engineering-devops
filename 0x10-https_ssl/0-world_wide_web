@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 # Script to print the record type and the ip of the given sub-domain
 
-domain="$1"
-if (( $2 ))
-  then
-  line=$(dig "$2.$domain" | grep -A1 'ANSWER SECTION:' | tail -1)
-  echo "$line" | awk -v subdomain="$2" '$1=subdomain{print "The subdomain "$1" is a "$4" record and points to "$5""}'
-else
-  for subdomain in "www" "lb-01" "web-01" "web-02"
-    do
-    line=$(dig "$subdomain.$1" | grep -A1 'ANSWER SECTION:' | tail -1)
-    echo "$line" | awk -v var=$subdomain '$1=var{print "The subdomain "$1" is a "$4" record and points to "$5""}'
-  done
-fi
+func () {
+  domain="$1"
+  if (( $2 ))
+    then
+    line=$(dig "$2.$domain" | grep -A1 'ANSWER SECTION:' | tail -1)
+    echo "$line" | awk -v subdomain="$2" '$1=subdomain{print "The subdomain "$1" is a "$4" record and points to "$5""}'
+  else
+    for subdomain in "www" "lb-01" "web-01" "web-02"
+      do
+      line=$(dig "$subdomain.$1" | grep -A1 'ANSWER SECTION:' | tail -1)
+      echo "$line" | awk -v var=$subdomain '$1=var{print "The subdomain "$1" is a "$4" record and points to "$5""}'
+    done
+  fi
+}
+func "$1" "$2"
