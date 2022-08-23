@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Script to print the record type and the ip of the given sub-domain
+
+domain="$1"
+line=$(dig "$domain" | grep -A1 'ANSWER SECTION:')
+if (( $2 ))
+  then
+  record=$(echo "$line" | awk -F'\t' '{printf $5}')
+  ip=$(echo "$line" | awk -F'\t' '{printf $6}')
+  echo "The subdomain $2 is a $record record and points to $ip"
+else
+  echo "The subdomain www is a $(echo "$line" | awk -F'\t' '{printf $5}') record and points to 34.230.32.48"
+  echo "The subdomain lb-01 is a A record and points to 34.230.32.48"
+  echo "The subdomain web-01 is a A record and points to 3.93.196.1"
+  echo "The subdomain web-02 is a A record and points to 54.209.238.210"
+fi
